@@ -24,11 +24,11 @@ resource "null_resource"  "commands" {
     }
     inline = [
         "sudo yum install -y epel-release -y",
-        "sudo yum install httpd -y",
-        "sudo systemctl start httpd",
-        "sudo systemctl enable httpd",
-        "sudo cp  /tmp/r1soft.repo  /etc/yum.repos.d/r1soft.repo",
-        "sudo yum install telnet -y"
+        "sudo yum install java-1.8.0-openjdk -y",
+        "curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | sudo tee /etc/yum.repos.d/jenkins.repo",
+        "sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key",
+        "sudo yum install jenkins -y",
+        "sudo systemctl start jenkins",
         ]
     }
 }
